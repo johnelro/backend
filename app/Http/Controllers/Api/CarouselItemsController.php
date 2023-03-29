@@ -43,9 +43,16 @@ class CarouselItemsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CarouselItemRequest $request, string $id)
     {
-        //
+        // Retrieve the validated input data...
+        $validated = $request->validated();
+
+        $carouselItem = CarouselItems::findOrFail($id);
+
+        $carouselItem->update($validated);
+
+        return $carouselItem;
     }
 
     /**
