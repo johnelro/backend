@@ -32,11 +32,13 @@ Route::delete('/carousel/{id}', [CarouselItemsController::class, 'destroy']);
 
 //User Routes
 
-Route::get('/user', [UserController::class, 'index']);
+Route::get('/user', [UserController::class, 'index']); //SHpw All From table
 
-Route::post('/user', [UserController::class, 'store']);
+Route::post('/user', [UserController::class, 'store']);//Store Credintial from Use 
 
-Route::get('/user/{id}', [UserController::class, 'show']);
+Route::get('/user/{id}', [UserController::class, 'show']);//Show Specific User
 
-Route::delete('/user/{id}', [UserController::class, 'destroy']);
+Route::put('/user/{id}', [UserController::class, 'update']);//update Credential of specific user
+
+Route::delete('/user/{id}', [UserController::class, 'destroy']);//Delete Credential from User
 

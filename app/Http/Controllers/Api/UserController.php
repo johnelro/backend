@@ -33,6 +33,21 @@ class UserController extends Controller
 
         return $user;
     }
+    
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(UserRequest $request, string $id)
+    {
+        // Retrieve the validated input data...
+        $validated = $request->validated();
+
+        $user = User::findOrFail($id);
+
+        $user->update($validated);
+
+        return $user;
+    }
 
     /**
      * Display the specified resource.
