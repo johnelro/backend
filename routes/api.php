@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Api\CarouselItemsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\MessagesController;
+use App\Http\Controllers\Api\CarouselItemsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,10 +39,20 @@ Route::post('/user', [UserController::class, 'store'])->name('user.store');//Sto
 
 Route::get('/user/{id}', [UserController::class, 'show']);//Show Specific User using ID
 
+//Customized API path for Update
 Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');//update Credential of specific user using ID
 Route::put('/user/email/{id}', [UserController::class, 'email'])->name('user.email');
 Route::put('/user/password/{id}', [UserController::class, 'password'])->name('user.password');
 
-
 Route::delete('/user/{id}', [UserController::class, 'destroy']);//Delete User using ID
+
+
+//Messsages API
+Route::get('/message', [MessagesController::class, 'index']);
+
+Route::post('/message', [MessagesController::class, 'store']);
+
+Route::delete('/message/{id}', [MessagesController::class, 'destroy']);
+
+
 

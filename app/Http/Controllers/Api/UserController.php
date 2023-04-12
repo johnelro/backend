@@ -28,6 +28,7 @@ class UserController extends Controller
         $validated = $request->validated();
 
         $validated['password'] = Hash::make($validated['password']);
+        
 
         $user = User::create($validated);
 
@@ -48,6 +49,7 @@ class UserController extends Controller
 
     //     return $user;
     // }
+
     public function update(UserRequest $request, string $id)
     {
         $user = User::findOrFail($id);
@@ -113,4 +115,6 @@ class UserController extends Controller
 
         return $user;
     }
+
+    
 }
