@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ShowUser;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
