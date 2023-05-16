@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -17,8 +18,8 @@ class AuthController extends Controller
     {
         
         $user = User::where('email', $request->email)->first();
-     
-        if (! $user || ! Hash::check($request->password, $user->password)) {
+        //guard clause//
+        if ( !$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
                 'email' => ['The provided credentials are incorrect.'],
             ]);
@@ -30,17 +31,19 @@ class AuthController extends Controller
         ];
      
         return $response;
-        
-
-
     }
-
 
       /**
      * Logout using the specified resource.
      */
-    public function logout()
+    public function logout(Request $request)
     {
-        return false;
+        $request->user()->tokens()->delete();
+
+        $response = [
+            'message'   => 'Logout.',
+        ];
+
+        return $response;
     }
 }
